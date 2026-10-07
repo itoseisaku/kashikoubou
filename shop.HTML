@@ -6,7 +6,7 @@
     <title>オンラインショップ | 菓子工房 月灯り</title>
     <meta
       name="description"
-      content="菓子工房 月灯りのオンラインショップ案内。正式なEC接続先、送料、発送日数などを公開準備中です。商品とギフトのご案内をご覧いただけます。"
+      content="菓子工房 月灯りのお取り寄せ。焼き菓子の詰め合わせ、価格、送料、発送目安をご紹介。商品と数量を選べるデザインサンプルです。"
     />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta name="theme-color" content="#173c32" />
@@ -16,7 +16,7 @@
     <meta property="og:title" content="オンラインショップ" />
     <meta
       property="og:description"
-      content="菓子工房 月灯りのオンラインショップ案内。正式なEC接続先、送料、発送日数などを公開準備中です。商品とギフトのご案内をご覧いただけます。"
+      content="菓子工房 月灯りのお取り寄せ。焼き菓子の詰め合わせ、価格、送料、発送目安をご紹介。商品と数量を選べるデザインサンプルです。"
     />
     <meta property="og:image" content="images/hero.webp" />
     <meta property="og:image:alt" content="月灯りの焼き菓子と深緑のギフト箱" />
@@ -51,7 +51,7 @@
           {
             "@type": "WebPage",
             "name": "オンラインショップ",
-            "description": "菓子工房 月灯りのオンラインショップ案内。正式なEC接続先、送料、発送日数などを公開準備中です。商品とギフトのご案内をご覧いただけます。",
+            "description": "菓子工房 月灯りのお取り寄せ。焼き菓子の詰め合わせ、価格、送料、発送目安をご紹介。商品と数量を選べるデザインサンプルです。",
             "inLanguage": "ja",
             "about": { "@id": "#tsukiakari" }
           },
@@ -78,6 +78,32 @@
     <script src="script.JS" defer></script>
   </head>
   <body>
+    <div class="site-loader" aria-hidden="true">
+      <div class="loader-orbit"></div>
+      <div class="loader-content">
+        <svg
+          class="brand-mark"
+          viewBox="0 0 64 64"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M45 8C25 9 17 31 27 45c6 8 15 11 23 10C40 64 22 61 12 49 2 37 7 18 21 10c8-5 16-5 24-2Z"
+            stroke="currentColor"
+            stroke-width="1.2"
+          />
+          <path
+            d="M38 14v12M32 20h12M47 31v7M43.5 34.5h7"
+            stroke="currentColor"
+            stroke-width="1.2"
+          />
+          <circle cx="33" cy="43" r="1.5" fill="currentColor" /></svg
+        ><span class="loader-title">月灯り</span
+        ><span class="loader-subtitle">菓子工房 TSUKIAKARI</span
+        ><span class="loader-line"></span
+        ><span class="loader-message">ひとつの余韻を、お届けします。</span>
+      </div>
+    </div>
     <a class="skip" href="#main">本文へ移動</a>
     <header class="site-header" id="top">
       <div class="header-inner">
@@ -175,53 +201,76 @@
         aria-label="焼き菓子ギフトを詰めた深緑の箱"
       ></div>
       <section class="content-block patterned">
-        <div class="reading shop-message">
-          <svg
-            class="brand-mark"
-            viewBox="0 0 64 64"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M45 8C25 9 17 31 27 45c6 8 15 11 23 10C40 64 22 61 12 49 2 37 7 18 21 10c8-5 16-5 24-2Z"
-              stroke="currentColor"
-              stroke-width="1.2"
-            />
-            <path
-              d="M38 14v12M32 20h12M47 31v7M43.5 34.5h7"
-              stroke="currentColor"
-              stroke-width="1.2"
-            />
-            <circle cx="33" cy="43" r="1.5" fill="currentColor" /></svg
-          ><span class="eyebrow">COMING SOON</span>
-          <h2>お取り寄せのご案内を、<br />ただいま準備しています。</h2>
+        <div class="reading">
+          <span class="eyebrow">SELECT YOUR SWEETS</span>
+          <h2>お好きなひと箱を。</h2>
           <p class="copy">
-            正式なオンラインショップの接続先は公開準備中です。<br />このサイトでは、まだ注文・決済を受け付けていません。
+            フィナンシェを中心に、焼き菓子を詰め合わせました。<br />贈る人数と、ご予算に合わせてお選びください。
           </p>
-          <a class="button" href="products.HTML"
-            >お菓子を見る<svg
-              class="arrow"
-              viewBox="0 0 40 14"
-              fill="none"
-              aria-hidden="true"
-            >
-              <path
-                d="M1 7h36M31 1l6 6-6 6"
-                stroke="currentColor"
-                stroke-width="1"
-              /></svg
-          ></a>
-          <p class="guide-note">
-            商品価格、送料、発送目安、決済方法は正式公開時にご案内します。
-          </p>
+          <div class="shop-selection">
+            <div>
+              <label class="field-label" for="shop-product">詰め合わせ</label
+              ><select class="select-control" id="shop-product">
+                <option data-price="2800">
+                  焼き菓子8個入 ／ 2,800円（税込）
+                </option>
+                <option data-price="4200">
+                  焼き菓子12個入 ／ 4,200円（税込）
+                </option>
+                <option data-price="1920">
+                  フィナンシェ6個入 ／ 1,920円（税込）
+                </option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="shop-quantity">数量</label
+              ><select class="select-control" id="shop-quantity">
+                <option value="1">1点</option>
+                <option value="2">2点</option>
+                <option value="3">3点</option>
+                <option value="4">4点</option>
+              </select>
+            </div>
+          </div>
+          <div class="shop-total">
+            <span>商品小計</span
+            ><output id="shop-subtotal" aria-live="polite">税込 2,800円</output>
+          </div>
+          <button type="button" class="button" id="preview-order">
+            選んだ内容を確認
+          </button>
+          <p class="notice" id="order-preview" role="status" hidden></p>
+          <noscript
+            ><p class="guide-note">
+              8個入2,800円、12個入4,200円、フィナンシェ6個入1,920円（税込）。JavaScriptを有効にすると数量に応じた小計を確認できます。
+            </p></noscript
+          >
         </div>
       </section>
       <section class="content-block dark">
         <div class="reading">
           <span class="eyebrow">SHOPPING GUIDE</span>
           <h2>安心して選べる、ご案内を。</h2>
+          <dl class="specs">
+            <div>
+              <dt>発送目安</dt>
+              <dd>3〜5営業日</dd>
+            </div>
+            <div>
+              <dt>送料</dt>
+              <dd>全国一律770円 ／ 5,400円以上で送料無料</dd>
+            </div>
+            <div>
+              <dt>包装</dt>
+              <dd>リボン・のし無料 ／ 手提げ55円</dd>
+            </div>
+            <div>
+              <dt>決済方法</dt>
+              <dd>クレジットカード・銀行振込を想定したサンプル</dd>
+            </div>
+          </dl>
           <p class="copy">
-            賞味期限や保存方法、アレルゲンから、お届けまでの日数まで。購入前に必要な情報を確認できるよう、商品ごとのご案内を整えています。
+            賞味期限や保存方法、アレルゲンから、お届けまでの日数まで。贈る前に必要な情報を、こちらからご確認ください。
           </p>
           <a class="link" href="faq.HTML"
             >よくあるご質問<svg
@@ -319,7 +368,7 @@
           <small>© 菓子工房 月灯り</small><span>BAKED WITH CARE, IN SAGA.</span>
         </div>
         <p class="footer-note">
-          写真はAI生成のイメージです。商品構成・包装・店舗情報は制作サンプルを含み、公開前に実情報へ更新します。背景素材：<a
+          このサイトはデザインサンプルです。店舗・価格・商品仕様・採用条件には架空の設定を含みます。写真はAI生成です。実際の注文・決済・お問い合わせ送信は行いません。背景素材：<a
             href="https://background-patterns.co/templates/elegant-floral-pattern-with-delicate-symmetrical-black-lines"
             target="_blank"
             rel="noopener noreferrer"

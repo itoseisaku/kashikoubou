@@ -1,8 +1,37 @@
-/* Public details belong in the HTML. No storefront or address is fabricated. */
+/* Static design sample. Demo values stay in HTML; no orders are transmitted. */
 (() => {
   "use strict";
   document.documentElement.classList.remove("no-js");
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const loader = document.querySelector(".site-loader");
+  const startedAt = performance.now();
+  let loading = Boolean(loader && !reduced);
+  let finishTimer, releaseTimer;
+  const releaseLoader = () => {
+    clearTimeout(finishTimer);
+    if (!loading) return;
+    loading = false;
+    document.body.classList.remove("is-loading");
+    document.body.classList.add("loader-leaving");
+    releaseTimer = setTimeout(
+      () => document.body.classList.remove("loader-leaving"),
+      500,
+    );
+  };
+  if (loading) {
+    document.body.classList.add("is-loading");
+    const ready = () => {
+      clearTimeout(finishTimer);
+      finishTimer = setTimeout(
+        releaseLoader,
+        Math.max(0, 650 - (performance.now() - startedAt)),
+      );
+    };
+    // Never hold the page behind the animation when an external asset is slow.
+    finishTimer = setTimeout(releaseLoader, 2200);
+    if (document.readyState === "complete") ready();
+    else window.addEventListener("load", ready, { once: true });
+  }
   const header = document.querySelector(".site-header");
   const toggle = document.querySelector(".menu-button");
   const panel = document.querySelector(".menu-panel");
@@ -99,11 +128,18 @@
     )
       return;
     e.preventDefault();
+    releaseLoader();
     closeMenu();
     curtain.classList.add("active");
     setTimeout(() => location.assign(url.href), 380);
   });
-  window.addEventListener("pageshow", () => {
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      clearTimeout(finishTimer);
+      clearTimeout(releaseTimer);
+      loading = false;
+      document.body.classList.remove("is-loading", "loader-leaving");
+    }
     curtain?.classList.remove("active");
     closeMenu();
   });
@@ -139,4 +175,24 @@
     "change",
     () => (recommendation.textContent = suggestions[occasion.value]),
   );
+  const preview = document.querySelector("#order-preview");
+  const selectedProduct = document.querySelector("#shop-product");
+  const selectedQuantity = document.querySelector("#shop-quantity");
+  const subtotal = document.querySelector("#shop-subtotal");
+  function updateSubtotal() {
+    if (!selectedProduct || !selectedQuantity || !subtotal) return;
+    const price = Number(selectedProduct.selectedOptions[0].dataset.price);
+    const quantity = Number(selectedQuantity.value);
+    subtotal.textContent = `税込 ${new Intl.NumberFormat("ja-JP").format(price * quantity)}円`;
+    if (preview) {
+      preview.hidden = true;
+      preview.textContent = "";
+    }
+  }
+  selectedProduct?.addEventListener("change", updateSubtotal);
+  selectedQuantity?.addEventListener("change", updateSubtotal);
+  document.querySelector("#preview-order")?.addEventListener("click", () => {
+    preview.hidden = false;
+    preview.textContent = `${selectedProduct.selectedOptions[0].textContent} × ${selectedQuantity.value}点。商品小計は${subtotal.textContent}です。これは選択内容のプレビューです。注文・決済は行われません。`;
+  });
 })();
